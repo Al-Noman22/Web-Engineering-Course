@@ -410,7 +410,21 @@
     </div>
   </div>
 </footer>
+<script>
+  // Get elements
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
 
+  // Toggle mobile menu visibility
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('hidden');
+    if (isOpen) {
+      mobileMenu.classList.remove('hidden');
+    } else {
+      mobileMenu.classList.add('hidden');
+    }
+  });
+</script>
 
 </body>
 </html>
