@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Tailwind CDN -->
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ["Inter","ui-sans-serif","system-ui","Segoe UI","Roboto","Arial"] },
+        colors: {
+          bu: {
+            50:  "#dff2eb",
+            200: "#b9e5e8",
+            400: "#7ab2d3",
+            600: "#4a628a",
+            DEFAULT: "#4a628a"
+          }
+        },
+        boxShadow: { soft: "0 10px 30px -12px rgba(74,98,138,0.35)" }
+      }
+    }
+  }
+</script>
+
+<!-- Inter font (optional) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- font awesome cdn -->
+ <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+<style>
+  /* link look + active state */
+  .nav-link {
+    position: relative;
+    padding: 0.75rem 1rem;
+    color: #111827; /* slate-900 */
+    transition: color .2s ease;
+  }
+  .nav-link:hover { color: #4a628a; }              /* bu-600 */
+  .nav-link.active { color: #4a628a; font-weight: 600; }
+  .nav-link.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -10px;
+    margin: 0 auto; width: 60%; height: 3px; background: #7ab2d3; /* bu-400 underline */
+    border-radius: 9999px;
+  }
+
+  /* thin vertical separators under each item (SUST style) */
+  .nav-item {
+    position: relative;
+  }
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -14px;                     /* drop below the menu baseline */
+    width: 1px;
+    height: 14px;                      /* line length */
+    background: #7ab2d3;               /* bu-400 (use your palette) */
+    opacity: .9;
+  }
+  /* hide separators on very narrow screens (mobile) */
+  @media (max-width: 768px) {
+    .nav-item::after { display: none; }
+  }
+</style>
+
+
+</head>
+<body>
+
+
+<!-- Skip link -->
+
+
+<!-- Top blue bar: logo + title -->
+<div class="bg-bu-600 text-white">
+  <div class="max-w-7xl mx-auto px-4 py-2 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-4 py-3">
+      <!-- LOGO -->
+      <img src="img/download.png" alt="University Logo" class="w-14 h-14 object-contain bg-white rounded-sm p-1 shadow-soft">
+      <!-- TITLE -->
+     <div class="text-white-500 pt-1">
+         <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+      Department of Computer Science & Engineering
+      </h1>
+      <p class="text-2xl">University of Barishal</p>
+     </div>
+    </div>
+  </div>
+</div>
+
+<!-- Menu row -->
+<header class="bg-white sticky top-0 z-50 shadow-soft">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-14">
+      <!-- Desktop menu -->
+      <nav class="hidden md:flex items-center gap-2 font-medium relative">
+        <div class="nav-item"><a href="index.html"      class="nav-link active">Home</a></div>
+        <div class="nav-item"><a href="about.html"      class="nav-link">About Us</a></div>
+        <div class="nav-item"><a href="academics.html"  class="nav-link">Academics</a></div>
+        <div class="nav-item"><a href="admission.html"  class="nav-link">Admission</a></div>
+        <div class="nav-item"><a href="faculty.html"    class="nav-link">Faculty & Staff</a></div>
+        <div class="nav-item"><a href="research.html"   class="nav-link">Research</a></div>
+        <div class="nav-item"><a href="campus-life.html" class="nav-link">Campus Life</a></div>
+        <div class="nav-item"><a href="notice.html"     class="nav-link">Notice Board</a></div>
+        <div class="nav-item"><a href="contact.html"    class="nav-link">Contact</a></div>
+      </nav>
+
+     <div>
+        <a class="px-3 py-2 bg-blue-400 rounded-lg text-whitec:\Users\ASUS\Downloads\Telegram Desktop\img\img" href="login.html">Log In</a>
+     </div>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn"
+              class="md:hidden inline-flex items-center justify-center rounded-lg p-2 border border-bu-200 text-bu-600 hover:bg-bu-50"
+              aria-label="Open menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden border-t border-bu-200 bg-white">
+    <div class="px-4 py-3 grid gap-1">
+      <a href="index.html"       class="nav-link">Home</a>
+      <a href="about.html"       class="nav-link">About Us</a>
+      <a href="academics.html"   class="nav-link">Academics</a>
+      <a href="admission.html"   class="nav-link">Admission</a>
+      <a href="faculty.html"     class="nav-link">Faculty & Staff</a>
+      <a href="research.html"    class="nav-link">Research</a>
+      <a href="campus-life.html" class="nav-link">Campus Life</a>
+      <a href="notice.html"      class="nav-link">Notice Board</a>
+      <a href="contact.html"     class="nav-link">Contact</a>
+    
+    </div>
+  </div>
+</header>
+
+<section id="login" class="min-h-screen flex items-center justify-center bg-[url('img/contact.jpg')] bg-cover bg-center bg-no-repeat">
+  <div class=" w-full  flex justify-center items-center inset-1">
+  <div class="w-full max-w-sm bg-white p-8 rounded-xl shadow-lg border border-bu-200/50">
+    <div class="text-center mb-6">
+      <!-- Logo -->
+      <img src="img/download.png" alt="Logo" class="mx-auto w-16 h-16">
+      <h1 class="mt-4 text-2xl font-bold text-bu-600">Login</h1>
+      <p class="text-sm text-slate-600">Sign in to access your dashboard</p>
+    </div>
+
+    <!-- Login Form -->
+    <form action="#" method="POST" class="space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+        <input type="email" id="email" name="email" required
+               class="mt-1 block w-full rounded-lg border border-bu-200 px-3 py-2 focus:ring-2 focus:ring-bu-400 focus:outline-none">
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
+        <input type="password" id="password" name="password" required
+               class="mt-1 block w-full rounded-lg border border-bu-200 px-3 py-2 focus:ring-2 focus:ring-bu-400 focus:outline-none">
+      </div>
+
+      <div class="flex items-center justify-between text-sm">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="rounded border-gray-300 text-bu-600 focus:ring-bu-400">
+          Remember me
+        </label>
+        <a href="#" class="text-bu-600 hover:underline">Forgot password?</a>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-bu-600 text-white py-2 rounded-lg font-semibold hover:bg-bu-700 transition">
+        Sign In
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-slate-600">
+      Don’t have an account? 
+      <a href="#" class="text-bu-600 font-semibold hover:underline">Register</a>
+    </p>
+  </div>
+</section>
+
+
+
+
+<footer class="bg-bu-600 text-white">
+  <!-- Top strip with logo + tagline + socials -->
+  <div class="border-b border-white/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
+      <!-- Logo + name -->
+      <div class="flex items-center gap-3">
+        <!-- Replace src with your logo -->
+        <img src="img/download.png" alt="Barishal University CSE"
+             class="w-14 h-14 object-contain bg-white rounded-sm p-1 shadow-soft">
+        <div>
+          <p class="text-lg font-bold leading-tight">Barishal University</p>
+          <p class="text-sm text-bu-50">Department of Computer Science &amp; Engineering</p>
+        </div>
+      </div>
+
+      <!-- Social icons -->
+      <div class="flex items-center gap-4">
+        <a href="#" aria-label="Facebook"
+           class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" aria-label="Twitter"
+           class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn"
+           class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" aria-label="YouTube"
+           class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="#" aria-label="Instagram"
+           class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+    <!-- About -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">About CSE</h3>
+      <p class="text-sm text-bu-50">
+        Advancing learning, research, and innovation in computing through rigorous
+        academics and industry collaboration.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="about.html" class="hover:text-bu-200">About Us</a></li>
+        <li><a href="academics.html" class="hover:text-bu-200">Academics</a></li>
+        <li><a href="research.html" class="hover:text-bu-200">Research</a></li>
+        <li><a href="admission.html" class="hover:text-bu-200">Admissions</a></li>
+        <li><a href="notice.html" class="hover:text-bu-200">Notice Board</a></li>
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">Resources</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="faculty.html" class="hover:text-bu-200">Faculty</a></li>
+        <li><a href="events.html" class="hover:text-bu-200">Events</a></li>
+        <li><a href="news.html" class="hover:text-bu-200">News &amp; Updates</a></li>
+        <li><a href="gallery.html" class="hover:text-bu-200">Gallery</a></li>
+        <li><a href="contact.html" class="hover:text-bu-200">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact / Newsletter -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">Contact</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-start gap-2">
+          <i class="fa-solid fa-location-dot mt-1"></i>
+          <span>Barishal University, Barishal, Bangladesh</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <i class="fa-solid fa-phone mt-1"></i>
+          <a href="tel:+880-0000-000000" class="hover:text-bu-200">+880-0000-000000</a>
+        </li>
+        <li class="flex items-start gap-2">
+          <i class="fa-solid fa-envelope mt-1"></i>
+          <a href="mailto:cse@bu.ac.bd" class="hover:text-bu-200">cse@bu.ac.bd</a>
+        </li>
+      </ul>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Newsletter</h3>
+      <form class="flex flex-col sm:flex-row gap-2">
+        <input type="email" required placeholder="Enter your email"
+               class="w-full px-3 py-2 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-bu-400">
+        <button type="submit"
+                class="bg-bu-400 hover:bg-bu-200 text-black px-4 py-2 rounded-md font-semibold">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bg-bu-700 text-sm">
+    <div class="max-w-7xl mx-auto py-2">
+      <p class="text-center ">&copy; <span id="year"></span> Department of CSE, Barishal University. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
